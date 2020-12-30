@@ -1,0 +1,30 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: Jobs_development
+  port: 5432
+  username: root
+  password: P@ssw0rd
+  host: localhost
+
+production:
+  <<: *default
+  database: <%= ENV['PRODUCTION_DATABASE']%>
+  port: 5432
+  username: <%= ENV['PRODUCTION_USERNAME']%>
+  password: <%= ENV['PRODUCTION_PASSWORD']%>
+  host: <%= ENV['PRODUCTION_HOST']%>
+  pool: 5
+  timeout: 15000
+
+test:
+  <<: *default
+  database: Jobs_test
+  port: 5432 
+  username: root
+  password: P@ssw0rd
+  host: localhost

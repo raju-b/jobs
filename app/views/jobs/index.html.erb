@@ -1,0 +1,65 @@
+<header>
+  <form class="form-inline" style="margin-left: 35%;">
+    <input class="form-control mr-sm-2 search-field" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0 text-white" type="submit">Search</button>
+  </form>
+</header>
+<section>
+  <nav class="navbar navbar-light bg-light">
+    <span>Filters</span>
+    <%@jobs.each do |job|%>
+      <div class="form-check">
+        <%= check_box_tag "title[]", job.title, false, class: "form-check-input",id: job.id%>
+        <label class="form-check-label" for=<%= job.id%>>
+          <%= job.title%>
+        </label>
+      </div>
+    <% end -%>
+  </nav>
+  <article>
+    <div id="jobs_div">
+      <%= render partial: "jobs"%>
+    </div>
+  </article>
+</section>
+<footer>
+  <p>© CodeCrux Web technologies(p) Ltd.</p>
+</footer>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".search-field").keyup(function(){
+      var skill  = $(".search-field").val();
+      var checkboxValues = [];
+      $("input:checkbox:checked").map(function(){
+        checkboxValues.push($(this).val());
+      });
+      $.ajax({
+        url: '/jobs/filter',
+        type: "GET",
+        data: {skills: skill, titles: checkboxValues},
+        success: function(response){
+          $("#jobs_div").html(response);
+        }
+      });
+    });
+
+    $('.form-check-input').on('change', function(){
+      if(this.checked){
+        var skill  = $(".search-field").val();
+        var checkboxValues = [];
+        $("input:checkbox:checked").map(function(){
+          checkboxValues.push($(this).val());
+        });
+        $.ajax({
+          url: '/jobs/filter',
+          type: "GET",
+          data: {skills: skill, titles: checkboxValues},
+          success: function(response){
+            $("#jobs_div").html(response);
+          }
+        });
+      }
+    })
+  });
+</script>
