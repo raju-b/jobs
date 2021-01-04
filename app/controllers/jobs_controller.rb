@@ -7,7 +7,8 @@ class JobsController < ApplicationController
 	def filter
 		@jobs = Job.order(:created_at)
 		@jobs = @jobs.where("skills @> array[?]", [params[:skills]]) if params[:skills].present?
-		@jobs = @jobs.where("lower(title) LIKE :search", search: params[:titles]) if params[:titles].present?
+		@jobs = @jobs.where("title iLIKE ANY ( array[?] )", params[:titles]) if params[:titles].present?
+		@jobs =  @jobs.where("country iLIKE ANY ( array[?] )", params[:country]) if params[:country].present?
 		respond_to do |format|
 			format.js { render partial: "jobs" }
 		end

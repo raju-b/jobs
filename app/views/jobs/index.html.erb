@@ -9,9 +9,19 @@
     <span>Filters</span>
     <%@jobs.each do |job|%>
       <div class="form-check">
-        <%= check_box_tag "title[]", job.title, false, class: "form-check-input",id: job.id%>
+        <%= check_box_tag "title[]", job.title, false, class: "form-check-input title",id: job.id%>
         <label class="form-check-label" for=<%= job.id%>>
           <%= job.title%>
+        </label>
+      </div>
+    <% end -%>
+    <hr>
+    <span>Country</span>
+    <%@jobs.pluck(:country).uniq.each_with_index do |country,index|%>
+      <div class="form-check">
+        <%= check_box_tag "country[]",country, false, class: "form-check-input country",id: "#{country}_#{index}"%>
+        <label class="form-check-label" for=<%= "#{country}_#{index}"%>>
+          <%= country%>
         </label>
       </div>
     <% end -%>
@@ -47,14 +57,18 @@
     $('.form-check-input').on('change', function(){
       if(this.checked){
         var skill  = $(".search-field").val();
+        var country = [];
         var checkboxValues = [];
-        $("input:checkbox:checked").map(function(){
+        $(".title:checkbox:checked").map(function(){
           checkboxValues.push($(this).val());
+        });
+        $(".country:checkbox:checked").map(function(){
+          country.push($(this).val());
         });
         $.ajax({
           url: '/jobs/filter',
           type: "GET",
-          data: {skills: skill, titles: checkboxValues},
+          data: {skills: skill, titles: checkboxValues, country: country},
           success: function(response){
             $("#jobs_div").html(response);
           }
