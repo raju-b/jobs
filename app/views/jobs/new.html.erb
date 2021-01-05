@@ -26,14 +26,17 @@
         <%= job.label :job_location, "Job Location", class: "control-label required"%>
         <%= job.text_field :country, placeholder: "Country",autofocus: true, class: "form-control"%>
       </div>
+      <span class = "text-danger"><%= @job.errors["country"][0] rescue nil%></span>
       <div class="form-group col-md-4">
         <label>&nbsp;</label>
         <%= job.text_field :state, placeholder: "State",autofocus: true, class: "form-control"%>
       </div>
+      <span class = "text-danger"><%= @job.errors["state"][0] rescue nil%></span>
       <div class="form-group col-md-4">
         <label>&nbsp;</label>
         <%= job.text_field :city, placeholder: "City",autofocus: true, class: "form-control"%>
       </div>
+      <span class = "text-danger"><%= @job.errors["city"][0] rescue nil%></span>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :skills, "Skills", class: "control-label required"%>
@@ -46,7 +49,7 @@
           <%= job.label :description, "Job Description", class: "control-label required"%>
           <%= job.rich_text_area :description, placeholder: "Description",autofocus: true, class: "form-control"%>
         </div>
-        <span class = "text-danger"><%= @job.errors["skills"][0] rescue nil%></span>
+        <span class = "text-danger"><%= @job.errors["description"][0] rescue nil%></span>
       </div>
       <div class="col-md-12">
         <div class="form-group">
