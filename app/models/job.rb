@@ -1,6 +1,7 @@
 class Job < ApplicationRecord
 	has_rich_text :description
 	has_rich_text :information
+
 	validates :title, presence: {message: "Job title can't be blank"}
 	validates :company_name, presence:{message: "Company Name can't be blank"}
 	validates :url, presence:{message: "URL can't be blank"}
