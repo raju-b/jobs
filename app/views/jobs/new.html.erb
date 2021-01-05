@@ -5,55 +5,58 @@
         <div class="form-group">
           <%= job.label :title, "Job Title", class: "control-label required"%>
           <%= job.text_field :title, placeholder: "Title",autofocus: true, class: "form-control"%>
+          <span class = "text-danger"><%= @job.errors["title"][0] rescue nil%></span>
         </div>
-        <span class = "text-danger"><%= @job.errors["title"][0] rescue nil%></span>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :company_name, "Company Name", class: "control-label required"%>
           <%= job.text_field :company_name, placeholder: "Company Name",autofocus: true, class: "form-control"%>
+          <span class = "text-danger"><%= @job.errors["company_name"][0] rescue nil%></span>
         </div>
-        <span class = "text-danger"><%= @job.errors["company_name"][0] rescue nil%></span>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :url, "Company URL(https://codecrux.com/)", class: "control-label required"%>
           <%= job.text_field :url, placeholder: "Company URL",autofocus: true, class: "form-control"%>
+          <span class = "text-danger"><%= @job.errors["url"][0] rescue nil%></span>
         </div>
-        <span class = "text-danger"><%= @job.errors["url"][0] rescue nil%></span>
       </div>
       <div class="form-group col-md-4">
         <%= job.label :job_location, "Job Location", class: "control-label required"%>
         <%= job.text_field :country, placeholder: "Country",autofocus: true, class: "form-control"%>
+        <span class = "text-danger"><%= @job.errors["country"][0] rescue nil%></span>
       </div>
       <div class="form-group col-md-4">
         <label>&nbsp;</label>
         <%= job.text_field :state, placeholder: "State",autofocus: true, class: "form-control"%>
+        <span class = "text-danger"><%= @job.errors["state"][0] rescue nil%></span>
       </div>
       <div class="form-group col-md-4">
         <label>&nbsp;</label>
         <%= job.text_field :city, placeholder: "City",autofocus: true, class: "form-control"%>
+        <span class = "text-danger"><%= @job.errors["city"][0] rescue nil%></span>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :skills, "Skills", class: "control-label required"%>
           <%= select_tag "job[skills][]", options_for_select([["Select a skills",""],["Ruby On Rails","Ruby On Rails"], ["Java","Java"], ["jQuery","jQuery"],["AWS", "AWS"], ["postgreSQL", "postgreSQL"], ["MySQL","MySQL"]]),{class: "js-example-basic-multiple form-control", multiple: true}%>
-        </div>
           <span class = "text-danger"><%= @job.errors["skills"][0] rescue nil%></span>
+        </div>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :description, "Job Description", class: "control-label required"%>
           <%= job.rich_text_area :description, placeholder: "Description",autofocus: true, class: "form-control"%>
+          <span class = "text-danger"><%= @job.errors["description"][0] rescue nil%></span>
         </div>
-        <span class = "text-danger"><%= @job.errors["skills"][0] rescue nil%></span>
       </div>
       <div class="col-md-12">
         <div class="form-group">
           <%= job.label :information, "Apply Information", class: "control-label required"%>
           <%= job.rich_text_area :information, placeholder: "Apply Information",autofocus: true, class: "form-control"%>
+          <span class = "text-danger"><%= @job.errors["information"][0] rescue nil%></span>
         </div>
-        <span class = "text-danger"><%= @job.errors["information"][0] rescue nil%></span>
       </div>
     </div>
     <%= job.submit "Save", class: "btn btn-primary"%>

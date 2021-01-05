@@ -1,14 +1,14 @@
 class Job < ApplicationRecord
 	has_rich_text :description
 	has_rich_text :information
-	validates :title, presence:{message: "please enter job title"}
-	validates :company_name, presence:{message: "please enter company_name"}
-	validates :url, presence:{message: "please enter company url"}
-	validates :country, presence:{message: "please enter country"}
-	validates :state, presence:{message: "please enter state"}
-	validates :city, presence:{message: "please enter city"}
-	validates :description, presence:{message: "please enter job description"}
-	validates :information, presence:{message: "please enter job information"}
-	validates :skills, presence:{message: "please select skills"}
+	validates :title, presence: {message: "Job title can't be blank"}
+	validates :company_name, presence:{message: "Company Name can't be blank"}
+	validates :url, presence:{message: "URL can't be blank"}
+	validates :country, presence:{message: "Country can't be blank"}
+	validates :state, presence:{message: "State can't be blank"}
+	validates :city, presence:{message: "City can't be blank"}
+	validates :description, presence:{message: "Job description can't be blank"}
+	validates :information, presence:{message: "Job information can't be blank"}
+	validates :skills, presence:{message: "Skills can't be blank"}
 
 end
